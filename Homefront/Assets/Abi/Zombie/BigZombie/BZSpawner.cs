@@ -1,9 +1,9 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 
-public class EnemySpawner : MonoBehaviour
+public class BZSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private GameObject BZPrefab;
     [SerializeField] private float spawnInterval = 2f;
 
     // Spawn area
@@ -40,23 +40,23 @@ public class EnemySpawner : MonoBehaviour
     {
         currentWave++;
 
-        int enemyCount;
+        int BZCount;
         if (currentWave <= 2)
         {
-            enemyCount = 2;
+            BZCount = 2;
         }
         else
         {
-            enemyCount = Random.Range(minEnemies, maxEnemies + currentWave);
+            BZCount = Random.Range(minEnemies, maxEnemies + currentWave);
         }
 
-        Debug.Log($"Starting Wave {currentWave}, Spawning {enemyCount} enemies...");
-        StartCoroutine(SpawnWave(enemyCount));
+        Debug.Log($"Starting Wave {currentWave}, Spawning {BZCount} enemies...");
+        StartCoroutine(SpawnWave(BZCount));
     }
 
-    private IEnumerator SpawnWave(int enemyCount)
+    private IEnumerator SpawnWave(int BZCount)
     {
-        for (int i = 0; i < enemyCount; i++)
+        for (int i = 0; i < BZCount; i++)
         {
             Vector3 spawnPosition;
 
@@ -69,7 +69,7 @@ public class EnemySpawner : MonoBehaviour
             }
             while (Vector3.Distance(spawnPosition, player.position) < minSpawnDistance);
 
-            Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            Instantiate(BZPrefab, spawnPosition, Quaternion.identity);
             yield return new WaitForSeconds(spawnInterval);
         }
     }

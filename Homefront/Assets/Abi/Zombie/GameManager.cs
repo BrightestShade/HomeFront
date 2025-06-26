@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private EnemySpawner enemySpawner;
+    [SerializeField] private LZSpawner LZSpawner;
+    [SerializeField] private BZSpawner BZSpawner;
     [SerializeField] private WaveCountdown waveCountdown;
 
     private void Start()
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         waveCountdown.StartWaveCountdown();
-        enemySpawner.StartFirstWave();
+        LZSpawner.StartFirstWave();
+        BZSpawner.StartFirstWave();
     }
 }
