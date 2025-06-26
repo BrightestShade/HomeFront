@@ -1,31 +1,22 @@
 fileFormatVersion: 2
-guid: 536697250b032864a88e0cb0c23f15dd
+guid: 6cc32e46a5a32f049bd9af93b94bd673
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3931931393306357669
-    second: survivor attack _0
+      213: -4360070700032784089
+    second: survivor damage _0
   - first:
-      213: -5883496470983651651
-    second: survivor attack _1
+      213: -1214292099346777824
+    second: survivor damage _1
   - first:
-      213: 6256420321401097156
-    second: survivor attack _2
+      213: 895633240770703989
+    second: survivor damage _2
   - first:
-      213: -4513764644613650441
-    second: survivor attack _3
+      213: 7360855742096483579
+    second: survivor damage _3
   - first:
-      213: 2043135471711060146
-    second: survivor attack _4
-  - first:
-      213: 3420377927094146190
-    second: survivor attack _5
-  - first:
-      213: -6157003723192733256
-    second: survivor attack _6
-  - first:
-      213: -3514453436859374648
-    second: survivor attack _7
+      213: -3228551092397140705
+    second: survivor damage _4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -58,7 +49,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -96,7 +87,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -117,43 +108,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: survivor attack _0
+      name: survivor damage _0
       rect:
         serializedVersion: 2
-        x: 145
-        y: 9
-        width: 33
-        height: 43
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,20 +127,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b5094c4ea39fe69c0800000000000000
-      internalID: -3931931393306357669
+      spriteID: 72905f88ccaed73c0800000000000000
+      internalID: -4360070700032784089
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: survivor attack _1
+      name: survivor damage _1
       rect:
         serializedVersion: 2
-        x: 208
-        y: 9
-        width: 44
-        height: 42
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,20 +149,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dbe41c9b12f995ea0800000000000000
-      internalID: -5883496470983651651
+      spriteID: 0293fdce4c7f52fe0800000000000000
+      internalID: -1214292099346777824
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: survivor attack _2
+      name: survivor damage _2
       rect:
         serializedVersion: 2
-        x: 233
-        y: 43
-        width: 21
-        height: 12
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4cbc5a6622543d650800000000000000
-      internalID: 6256420321401097156
+      spriteID: 5727b2defaded6c00800000000000000
+      internalID: 895633240770703989
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: survivor attack _3
+      name: survivor damage _3
       rect:
         serializedVersion: 2
-        x: 267
-        y: 10
-        width: 37
-        height: 44
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -228,20 +193,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7f7061e78f2eb51c0800000000000000
-      internalID: -4513764644613650441
+      spriteID: bf42e864c43072660800000000000000
+      internalID: 7360855742096483579
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: survivor attack _4
+      name: survivor damage _4
       rect:
         serializedVersion: 2
-        x: 326
-        y: 10
-        width: 42
-        height: 45
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,74 +215,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2b08653f2ecaa5c10800000000000000
-      internalID: 2043135471711060146
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: survivor attack _5
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 10
-        width: 47
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e84980e4a9f977f20800000000000000
-      internalID: 3420377927094146190
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: survivor attack _6
-      rect:
-        serializedVersion: 2
-        x: 17
-        y: 9
-        width: 30
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8b1f6562cbded8aa0800000000000000
-      internalID: -6157003723192733256
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: survivor attack _7
-      rect:
-        serializedVersion: 2
-        x: 81
-        y: 9
-        width: 32
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8c3a85438372a3fc0800000000000000
-      internalID: -3514453436859374648
+      spriteID: f15187613e1e133d0800000000000000
+      internalID: -3228551092397140705
       vertices: []
       indices: 
       edges: []
@@ -326,7 +225,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 8db969d13e966d54793ba83fb841548e
     internalID: 0
     vertices: []
     indices: 
@@ -336,14 +235,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      survivor attack _0: -3931931393306357669
-      survivor attack _1: -5883496470983651651
-      survivor attack _2: 6256420321401097156
-      survivor attack _3: -4513764644613650441
-      survivor attack _4: 2043135471711060146
-      survivor attack _5: 3420377927094146190
-      survivor attack _6: -6157003723192733256
-      survivor attack _7: -3514453436859374648
+      survivor damage _0: -4360070700032784089
+      survivor damage _1: -1214292099346777824
+      survivor damage _2: 895633240770703989
+      survivor damage _3: 7360855742096483579
+      survivor damage _4: -3228551092397140705
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
