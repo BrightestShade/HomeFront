@@ -12,5 +12,11 @@ public class BZombieAttack : MonoBehaviour
             Debug.Log("Hit player!");
             playerHealth.TakeDamage(damage);
         }
+
+        if (collision.gameObject.CompareTag("PlayerHitBox"))
+        {
+            // Ignore collisions with player tagged objects (if needed)
+            return;
+        }
     }
 }

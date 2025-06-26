@@ -6,6 +6,7 @@ TagManager:
   tags:
   - LZ
   - BZ
+  - PlayerHitBox
   layers:
   - Default
   - TransparentFX
