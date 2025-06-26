@@ -18,9 +18,9 @@ public class PlayerController : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform bulletSpawnPoint;
     public float fireRate = 0.5f;
+    private float nextFireTime = 0f;
     public int maxAmmo = 6;
     public float reloadTime = 2f;
-    private float nextFireTime = 0f;
     private int currentAmmo;
     private bool isReloading = false;
 
@@ -95,13 +95,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // Get joystick input
         if (movementJoystick != null)
             movementInput = new Vector2(movementJoystick.Horizontal, movementJoystick.Vertical);
         else
             movementInput = Vector2.zero;
 
-        // Face the nearest enemy
         GameObject nearestEnemy = FindNearestEnemy();
         if (nearestEnemy != null)
         {
@@ -122,14 +120,14 @@ public class PlayerController : MonoBehaviour
 
     public void OnFireButtonPressed()
     {
-        if (Time.time >= nextFireTime && !isReloading)
+        if (!isReloading && Time.time >= nextFireTime)
         {
             if (currentAmmo > 0)
             {
                 Shoot();
-                nextFireTime = Time.time + fireRate;
                 currentAmmo--;
                 UpdateAmmoUI();
+                nextFireTime = Time.time + fireRate;
 
                 if (currentAmmo <= 0)
                     StartCoroutine(Reload());
@@ -139,10 +137,19 @@ public class PlayerController : MonoBehaviour
 
     void Shoot()
     {
-        Vector3 shootDirection = facingRight ? Vector3.right : Vector3.left;
         GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
-        Bullet bulletScript = bullet.GetComponent<Bullet>();
-        bulletScript.SetTarget(bulletSpawnPoint.position + shootDirection);
+
+        GameObject nearestEnemy = FindNearestEnemy();
+        if (nearestEnemy != null)
+        {
+            bullet.GetComponent<Bullet>().SetTarget(nearestEnemy.transform.position);
+        }
+        else
+        {
+            // Default direction if no enemy is found
+            Vector3 defaultTarget = bulletSpawnPoint.position + (facingRight ? Vector3.right : Vector3.left);
+            bullet.GetComponent<Bullet>().SetTarget(defaultTarget);
+        }
     }
 
     IEnumerator Reload()
@@ -241,7 +248,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // New method to find the nearest enemy
     GameObject FindNearestEnemy()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
