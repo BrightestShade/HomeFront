@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ZombieAttack : MonoBehaviour
+public class ZombieAttackLittleZombie : MonoBehaviour
 {
     public PlayerHealth playerHealth;
     public int damage = 1;

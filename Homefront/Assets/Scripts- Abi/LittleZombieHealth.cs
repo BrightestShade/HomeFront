@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class LittleZombieHealth : MonoBehaviour
 {
     public int maxHealth = 3;
     public int currentHealth; 
@@ -24,7 +24,7 @@ public class EnemyHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
-            Debug.Log("Enemy is Dead!");
+            Debug.Log("Little Zombie is Dead!");
         }
     }
 }
