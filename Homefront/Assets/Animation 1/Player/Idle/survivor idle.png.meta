@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: 6cc32e46a5a32f049bd9af93b94bd673
+guid: 58d14fb91977ab04cb85c5b4a8a95618
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4360070700032784089
-    second: survivor damage _0
+      213: -3075843258982225569
+    second: survivor idle_0
   - first:
-      213: -1214292099346777824
-    second: survivor damage _1
+      213: -7027418562431996228
+    second: survivor idle_1
   - first:
-      213: 895633240770703989
-    second: survivor damage _2
+      213: -1635839691123682728
+    second: survivor idle_2
   - first:
-      213: 7360855742096483579
-    second: survivor damage _3
+      213: -4200947731553711134
+    second: survivor idle_3
   - first:
-      213: -3228551092397140705
-    second: survivor damage _4
+      213: -6208875086200533805
+    second: survivor idle_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -112,7 +112,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: survivor damage _0
+      name: survivor idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -127,14 +127,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 72905f88ccaed73c0800000000000000
-      internalID: -4360070700032784089
+      spriteID: f59a59b3ad86055d0800000000000000
+      internalID: -3075843258982225569
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: survivor damage _1
+      name: survivor idle_1
       rect:
         serializedVersion: 2
         x: 64
@@ -149,14 +149,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0293fdce4c7f52fe0800000000000000
-      internalID: -1214292099346777824
+      spriteID: cbe2142ec08997e90800000000000000
+      internalID: -7027418562431996228
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: survivor damage _2
+      name: survivor idle_2
       rect:
         serializedVersion: 2
         x: 128
@@ -171,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5727b2defaded6c00800000000000000
-      internalID: 895633240770703989
+      spriteID: 852961dc7745c49e0800000000000000
+      internalID: -1635839691123682728
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: survivor damage _3
+      name: survivor idle_3
       rect:
         serializedVersion: 2
         x: 192
@@ -193,14 +193,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bf42e864c43072660800000000000000
-      internalID: 7360855742096483579
+      spriteID: 2eb02c4bb4c33b5c0800000000000000
+      internalID: -4200947731553711134
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: survivor damage _4
+      name: survivor idle_4
       rect:
         serializedVersion: 2
         x: 256
@@ -215,8 +215,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f15187613e1e133d0800000000000000
-      internalID: -3228551092397140705
+      spriteID: 3dc8e305105a5d9a0800000000000000
+      internalID: -6208875086200533805
       vertices: []
       indices: 
       edges: []
@@ -225,7 +225,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 8db969d13e966d54793ba83fb841548e
+    spriteID: 4e6368815be4a0b4e899210b6562647e
     internalID: 0
     vertices: []
     indices: 
@@ -235,11 +235,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      survivor damage _0: -4360070700032784089
-      survivor damage _1: -1214292099346777824
-      survivor damage _2: 895633240770703989
-      survivor damage _3: 7360855742096483579
-      survivor damage _4: -3228551092397140705
+      survivor idle_0: -3075843258982225569
+      survivor idle_1: -7027418562431996228
+      survivor idle_2: -1635839691123682728
+      survivor idle_3: -4200947731553711134
+      survivor idle_4: -6208875086200533805
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
