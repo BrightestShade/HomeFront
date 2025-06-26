@@ -1,10 +1,28 @@
 fileFormatVersion: 2
-guid: 54634293dd32534488076ff235998a7d
+guid: 8e3bfcde2dc998146a0d37b3fd091620
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1285073377887111016
-    second: survivor defalt2._0
+      213: 4361262676458384601
+    second: survivor hurt_0
+  - first:
+      213: -940807805341215551
+    second: survivor hurt_1
+  - first:
+      213: 4906072121731875175
+    second: survivor hurt_2
+  - first:
+      213: -927983156684733398
+    second: survivor hurt_3
+  - first:
+      213: 2822015447326264354
+    second: survivor hurt_4
+  - first:
+      213: -7146352578001467730
+    second: survivor hurt_5
+  - first:
+      213: -2627529600456613699
+    second: survivor hurt_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +118,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: survivor defalt2._0
+      name: survivor hurt_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +133,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8983ab842908a2ee0800000000000000
-      internalID: -1285073377887111016
+      spriteID: 9dca87a1c41568c30800000000000000
+      internalID: 4361262676458384601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: survivor hurt_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c4d8b0294491f2f0800000000000000
+      internalID: -940807805341215551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: survivor hurt_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 761864ae99ed51440800000000000000
+      internalID: 4906072121731875175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: survivor hurt_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a24c2445c342f13f0800000000000000
+      internalID: -927983156684733398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: survivor hurt_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22c0c800910d92720800000000000000
+      internalID: 2822015447326264354
       vertices: []
       indices: 
       edges: []
@@ -125,7 +231,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 8d622a8b35e6bbc42b9301cefe751155
+    spriteID: c2b0d46ad5725114480d5d40ddc6b5cb
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +241,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      survivor defalt2._0: -1285073377887111016
+      survivor hurt_0: 4361262676458384601
+      survivor hurt_1: -940807805341215551
+      survivor hurt_2: 4906072121731875175
+      survivor hurt_3: -927983156684733398
+      survivor hurt_4: 2822015447326264354
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
