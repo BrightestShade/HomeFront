@@ -1,14 +1,18 @@
 using UnityEngine;
+using UnityEngine.UI; 
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxHealth = 5;
-    public int health;
+    [SerializeField] private int maxHealth = 5;
+    [SerializeField] private int health;
+
+    [Header("Heart")]
+    [SerializeField] private Image healthBarFill; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        health = maxHealth;
+        health = maxHealth;        
     }
 
     // Update is called once per frame
@@ -25,5 +29,11 @@ public class PlayerHealth : MonoBehaviour
             Destroy(gameObject);
             Debug.Log("Player is Dead!"); 
         }
+        UpdateHealthBar();
+    }
+
+    private void UpdateHealthBar()
+    {
+        healthBarFill.fillAmount = (float)health / maxHealth;
     }
 }
