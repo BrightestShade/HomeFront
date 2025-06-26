@@ -2,16 +2,12 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    void Update()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (Input.touchCount > 1)
+        if (collision.collider.gameObject.tag == "Enemy")
         {
-            Touch touch = Input.GetTouch(1);
-
-            if (gameObject.tag == "Enemy")
-            {
-                gameObject.GetComponent<EnemyHealth>().TakeDamage(1);
-            }
+            Debug.Log("Hit Enemy!");
+            collision.collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(1);
         }
     }
 }
