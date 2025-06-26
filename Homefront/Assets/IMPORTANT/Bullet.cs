@@ -4,21 +4,31 @@ public class Bullet : MonoBehaviour
 {
     public float speed = 10f;
     private Vector2 targetDirection;
+    private bool hasTarget = false;
+
+    public float lifeTime = 3f; // Bullet will be destroyed after 3 seconds
 
     public void SetTarget(Vector3 targetPosition)
     {
-        // Calculate direction to target
         targetDirection = (targetPosition - transform.position).normalized;
+        hasTarget = true;
 
-        // Rotate the bullet to face the target
         float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+        transform.rotation = Quaternion.Euler(0f, 0f, angle);
+    }
+
+    void Start()
+    {
+        // Schedule self-destruction
+        Destroy(gameObject, lifeTime);
     }
 
     void Update()
     {
-        // Move the bullet towards the target direction
-        transform.position += (Vector3)targetDirection * speed * Time.deltaTime;
+        if (hasTarget)
+        {
+            transform.position += (Vector3)targetDirection * speed * Time.deltaTime;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
