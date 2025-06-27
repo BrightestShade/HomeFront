@@ -1,39 +1,59 @@
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
-using UnityEngine.UI; 
+using UnityEngine.UI;
+using UnityEngine.Events; 
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 5;
-    [SerializeField] private int health;
+    [SerializeField] private float currentHealth;
+    [SerializeField] private float maxHealth;
 
-    [Header("Heart")]
-    [SerializeField] private Image healthBarFill; 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public float RemainingHealthPercentage
     {
-        health = maxHealth;        
+        get
+        {
+            return currentHealth / maxHealth;
+        }
     }
+    public UnityEvent OnDied; 
 
-    // Update is called once per frame
-    void Update()
+    public void TakeDamage(float damageAmount)
     {
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+        }
 
-    }
+        currentHealth -= damageAmount;
 
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-        if (health <= 0)
+        if (currentHealth < 0)
+        {
+            currentHealth = 0;
+        }
+
+        if(currentHealth > 0)
+        {
+            OnDied.Invoke();
+        }
+        
+        if(currentHealth == 0)
         {
             Destroy(gameObject);
-            Debug.Log("Player is Dead!"); 
         }
-        UpdateHealthBar();
     }
 
-    private void UpdateHealthBar()
+    public void AddHealth(float amountToAdd)
     {
-        healthBarFill.fillAmount = (float)health / maxHealth;
+        if (currentHealth == maxHealth)
+        {
+            return;
+        }
+
+        currentHealth += amountToAdd;
+
+        if(currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth; 
+        }
     }
 }

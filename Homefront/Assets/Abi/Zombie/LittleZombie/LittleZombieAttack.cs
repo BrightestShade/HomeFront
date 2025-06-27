@@ -1,16 +1,19 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.Rendering;
 
-public class ZombieAttackLittleZombie : MonoBehaviour
+public class LittleZombieAttack : MonoBehaviour
 {
-    public PlayerHealth playerHealth;
-    public int damage = 1;
+    [SerializeField] private float damageAmount;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.GetComponent<PlayerHealth>())
         {
-            Debug.Log("Hit player!");
-            playerHealth.TakeDamage(damage);
+            var PlayerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+
+            PlayerHealth.TakeDamage(damageAmount);
         }
     }
 }
