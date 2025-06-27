@@ -101,7 +101,7 @@ public class EnemyController : MonoBehaviour
                 PlayerController playerController = other.GetComponent<PlayerController>();
                 if (playerController != null)
                 {
-                    playerController.TakeDamage();
+                    //playerController.TakeDamage();
                     lastDamageTime = Time.time;
                 }
             }

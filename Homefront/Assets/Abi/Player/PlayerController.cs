@@ -88,12 +88,12 @@ public class PlayerController : MonoBehaviour
         }
 
         UpdateAmmoUI();
-        UpdateHealthUI();
+        //UpdateHealthUI();
 
         if (fireButton != null)
             fireButton.onClick.AddListener(OnFireButtonPressed);
 
-        HealthPickUp.OnHealthPickUp += Heal;
+        //HealthPickUp.OnHealthPickUp += Heal;
     }
 
     void Update()
@@ -168,7 +168,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void UpdateHealthUI()
+    /*void UpdateHealthUI()
     {
         for (int i = 0; i < healthImages.Length; i++)
         {
@@ -180,9 +180,9 @@ public class PlayerController : MonoBehaviour
             if (healthAnimators[i] != null)
                 healthAnimators[i].SetTrigger("LoseHealth");
         }
-    }
+    }*/
 
-    public void TakeDamage()
+    /*public void TakeDamage()
     {
         if (currentHealth > 0)
         {
@@ -214,7 +214,7 @@ public class PlayerController : MonoBehaviour
         Destroy(gameObject);
         SceneManager.LoadScene(2);
         Time.timeScale = 1;
-    }
+    }*/
 
     void RotateToDirection(Vector2 direction)
     {
@@ -232,7 +232,7 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("IsWalking", isMoving);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    /*private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("EnemyBullet"))
         {
@@ -244,7 +244,7 @@ public class PlayerController : MonoBehaviour
         {
             TakeDamage();
         }
-    }
+    }*/
 
     GameObject FindNearestEnemy()
     {
