@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour
     public Sprite oneHeartSprite;
     public Sprite threeHeartSprite;
 
+    public GameObject shopMenuUI; // <-- Shop menu reference added
+
     [Header("Health")]
     public int maxHealth = 4;
     public int currentHealth;
@@ -50,7 +52,7 @@ public class PlayerController : MonoBehaviour
     private Dictionary<int, Sprite> ammoSprites;
     private Dictionary<int, Sprite> healthSprites;
 
-    public SpriteRenderer spriteRenderer;          // Assign in Inspector
+    public SpriteRenderer spriteRenderer;
     public BoxCollider2D attackCollider;
 
     void Start()
@@ -94,6 +96,10 @@ public class PlayerController : MonoBehaviour
             fireButton.onClick.AddListener(OnFireButtonPressed);
 
         HealthPickUp.OnHealthPickUp += Heal;
+
+        // Ensure shop menu is hidden at start
+        if (shopMenuUI != null)
+            shopMenuUI.SetActive(false);
     }
 
     void Update()
@@ -103,15 +109,20 @@ public class PlayerController : MonoBehaviour
         else
             movementInput = Vector2.zero;
 
-        Debug.Log("Joystick Input: " + movementInput);
-
         if (movementInput.sqrMagnitude > 0.01f)
         {
             RotateToDirection(movementInput);
         }
 
         UpdateAnimation();
+
+        // Close shop menu with Escape key
+        if (shopMenuUI != null && shopMenuUI.activeSelf && Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            shopMenuUI.SetActive(false);
+        }
     }
+
     void FixedUpdate()
     {
         rb.velocity = movementInput * moveSpeed;
@@ -145,8 +156,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            // Default direction: based on player's facing rotation
-            Vector3 direction = transform.right; // Player's local "forward" direction
+            Vector3 direction = transform.right;
             Vector3 defaultTarget = bulletSpawnPoint.position + direction;
             bullet.GetComponent<Bullet>().SetTarget(defaultTarget);
         }
@@ -223,14 +233,13 @@ public class PlayerController : MonoBehaviour
         if (direction.sqrMagnitude < 0.01f) return;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        float offset = -90f;  // change this based on your sprite's facing direction
-
+        float offset = -90f;
         transform.rotation = Quaternion.Euler(0, 0, angle + offset);
     }
 
     void UpdateAnimation()
     {
-        bool isMoving = movementInput.sqrMagnitude > 0.01f; // if joystick is moving
+        bool isMoving = movementInput.sqrMagnitude > 0.01f;
         animator.SetBool("IsWalking", isMoving);
     }
 
@@ -245,6 +254,14 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Wall"))
         {
             TakeDamage();
+        }
+
+        if (other.CompareTag("Shop")) // <-- Shop trigger handling
+        {
+            if (shopMenuUI != null)
+            {
+                shopMenuUI.SetActive(true);
+            }
         }
     }
 
