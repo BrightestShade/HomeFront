@@ -130,8 +130,9 @@ GameObject:
   - component: {fileID: 102817479}
   - component: {fileID: 102817477}
   - component: {fileID: 102817481}
-  - component: {fileID: 102817475}
   - component: {fileID: 102817482}
+  - component: {fileID: 102817483}
+  - component: {fileID: 102817484}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player
@@ -139,19 +140,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &102817475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 3005450058221932744, guid: a234bceb8cebe5e45a2ac5cedd304ca8, type: 3}
-  m_PrefabInstance: {fileID: 2127314549}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 102817474}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aea2d66a981880b48958e32c1e8806ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.01
 --- !u!50 &102817477
 Rigidbody2D:
   serializedVersion: 4
@@ -264,6 +252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 5
   health: 0
+  healthBarFill: {fileID: 0}
 --- !u!61 &102817482
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -310,6 +299,63 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.5, y: 0.4}
   m_EdgeRadius: 0
+--- !u!114 &102817483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102817474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 741fe245f9fc9534a83dc01b536720b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  movementJoystick: {fileID: 1773692398}
+  bulletPrefab: {fileID: 2187879639010787683, guid: ba78a421603dfb6428b33b87c7ccf23e, type: 3}
+  bulletSpawnPoint: {fileID: 0}
+  fireRate: 0.5
+  maxAmmo: 6
+  reloadTime: 2
+  fireButton: {fileID: 0}
+  ammoImage: {fileID: 0}
+  fullBulletSprite: {fileID: 0}
+  emptyBulletSprite: {fileID: 0}
+  spriteFor1Bullet: {fileID: 0}
+  spriteFor2Bullets: {fileID: 0}
+  spriteFor3Bullets: {fileID: 0}
+  spriteFor4Bullets: {fileID: 0}
+  healthImages: []
+  fullHeartSprite: {fileID: 0}
+  emptyHeartSprite: {fileID: 0}
+  twoHeartSprite: {fileID: 0}
+  oneHeartSprite: {fileID: 0}
+  threeHeartSprite: {fileID: 0}
+  maxHealth: 4
+  currentHealth: 0
+--- !u!95 &102817484
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102817474}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 366430610512aca4aba97766ecff6b19, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &469087512
 GameObject:
   m_ObjectHideFlags: 0
@@ -921,6 +967,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
+--- !u!114 &1773692398 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2929252283123773951, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
+  m_PrefabInstance: {fileID: 1672793786}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45977bbae16431c46a013576a1aea384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2127314549
 PrefabInstance:
   m_ObjectHideFlags: 0
