@@ -2,14 +2,12 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public float moveSpeed = 0.02f;
-    public int maxHealth = 3;
-    private int currentHealth;
+    [SerializeField] private float moveSpeed = 0.02f;
 
-    public Rigidbody2D rb;
-    public Animator animator;
+    [SerializeField] private Rigidbody2D rb;
+    // public Animator animator;
 
-    private Transform player;
+    [SerializeField] private Transform player;
     private bool facingRight = true;
 
     // Damage over time variables
@@ -18,23 +16,13 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
-        currentHealth = maxHealth;
-
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null)
-        {
-            player = playerObj.transform;
-        }
     }
 
     void Update()
     {
-        if (player != null)
-        {
             FollowPlayer();
-            UpdateAnimation();
+            //UpdateAnimation();
             FacePlayer();
-        }
     }
 
     void FollowPlayer()
@@ -42,7 +30,7 @@ public class EnemyController : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
     }
 
-    void UpdateAnimation()
+    /*void UpdateAnimation()
     {
         if (player == null) return;
 
@@ -51,7 +39,7 @@ public class EnemyController : MonoBehaviour
         animator.SetFloat("Horizontal", direction.x);
         animator.SetFloat("Vertical", direction.y);
         animator.SetFloat("Speed", direction.sqrMagnitude);
-    }
+    }*/
 
     void FacePlayer()
     {
@@ -75,31 +63,14 @@ public class EnemyController : MonoBehaviour
         transform.localScale = localScale;
     }
 
-    public void TakeDamage(int damage = 1)
-    {
-        currentHealth -= damage;
-        Debug.Log($"Enemy took damage, current health: {currentHealth}");
-
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-    }
-
-    void Die()
-    {
-        Debug.Log("Enemy died!");
-        Destroy(gameObject);
-    }
-
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             if (Time.time - lastDamageTime >= damageInterval)
             {
-                PlayerController playerController = other.GetComponent<PlayerController>();
-                if (playerController != null)
+                PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
+                if (playerHealth != null)
                 {
                     //playerController.TakeDamage();
                     lastDamageTime = Time.time;
