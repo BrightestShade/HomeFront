@@ -103,8 +103,6 @@ public class PlayerController : MonoBehaviour
         else
             movementInput = Vector2.zero;
 
-        Debug.Log("Joystick Input: " + movementInput);
-
         if (movementInput.sqrMagnitude > 0.01f)
         {
             RotateToDirection(movementInput);
