@@ -14,6 +14,8 @@ public class LittleZombieAttack : MonoBehaviour
             var PlayerHealth = collision.gameObject.GetComponent<PlayerHealth>();
 
             PlayerHealth.TakeDamage(damageAmount);
+
+            Debug.Log("Hit Player");
         }
     }
 }

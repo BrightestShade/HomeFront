@@ -1,12 +1,25 @@
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events; 
+using UnityEngine.Events;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+using UnityEditor.ShaderGraph.Internal;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [Header("Health")]
     [SerializeField] private float currentHealth;
     [SerializeField] private float maxHealth;
+
+    [Header("Health Bar")]
+    [SerializeField] private Image healthBarFill; 
+
+    private void Start()
+    {
+        UpdateHealthUI();
+        
+        currentHealth = maxHealth;
+    }
 
     public float RemainingHealthPercentage
     {
@@ -19,6 +32,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
+        UpdateHealthUI(); 
+
         if (currentHealth <= 0)
         {
             currentHealth = 0;
@@ -39,11 +54,16 @@ public class PlayerHealth : MonoBehaviour
         if(currentHealth == 0)
         {
             Destroy(gameObject);
+            SceneManager.LoadScene(2);
+            Time.timeScale = 1;
+            Debug.Log("Player is dead!");
         }
     }
 
     public void AddHealth(float amountToAdd)
     {
+        UpdateHealthUI(); 
+
         if (currentHealth == maxHealth)
         {
             return;
@@ -55,5 +75,17 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHealth = maxHealth; 
         }
+    }
+
+    public void UpdateHealth(float amount)
+    {
+        currentHealth += amount;
+        UpdateHealthUI();
+    }
+
+    void UpdateHealthUI()
+    {
+        float targetFillAmount = currentHealth / maxHealth;
+        healthBarFill.fillAmount = targetFillAmount;
     }
 }

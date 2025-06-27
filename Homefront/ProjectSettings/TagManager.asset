@@ -7,6 +7,9 @@ TagManager:
   - LZ
   - BZ
   - PlayerHitBox
+  - Enemy
+  - Wall
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX

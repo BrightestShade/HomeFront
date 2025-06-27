@@ -34,21 +34,10 @@ public class PlayerController : MonoBehaviour
     public Sprite spriteFor3Bullets;
     public Sprite spriteFor4Bullets;
 
-    public Image[] healthImages;
-    public Sprite fullHeartSprite;
-    public Sprite emptyHeartSprite;
-    public Sprite twoHeartSprite;
-    public Sprite oneHeartSprite;
-    public Sprite threeHeartSprite;
-
-    [Header("Health")]
-    public int maxHealth = 4;
-    public int currentHealth;
-
     private Animator animator;
-    private Animator[] healthAnimators;
+    //private Animator[] healthAnimators;
     private Dictionary<int, Sprite> ammoSprites;
-    private Dictionary<int, Sprite> healthSprites;
+    //private Dictionary<int, Sprite> healthSprites;
 
     public SpriteRenderer spriteRenderer;          // Assign in Inspector
     public BoxCollider2D attackCollider;
@@ -59,7 +48,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
 
         currentAmmo = maxAmmo;
-        currentHealth = maxHealth;
+        //currentHealth = maxHealth;
 
         ammoSprites = new Dictionary<int, Sprite>
         {
@@ -72,7 +61,7 @@ public class PlayerController : MonoBehaviour
             {0, emptyBulletSprite}
         };
 
-        healthSprites = new Dictionary<int, Sprite>
+        /*healthSprites = new Dictionary<int, Sprite>
         {
             {4, fullHeartSprite},
             {3, threeHeartSprite},
@@ -85,10 +74,9 @@ public class PlayerController : MonoBehaviour
         for (int i = 0; i < healthImages.Length; i++)
         {
             healthAnimators[i] = healthImages[i].GetComponent<Animator>();
-        }
+        }*/
 
         UpdateAmmoUI();
-        //UpdateHealthUI();
 
         if (fireButton != null)
             fireButton.onClick.AddListener(OnFireButtonPressed);
@@ -168,54 +156,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    /*void UpdateHealthUI()
-    {
-        for (int i = 0; i < healthImages.Length; i++)
-        {
-            if (i < currentHealth)
-                healthImages[i].sprite = healthSprites[currentHealth];
-            else
-                healthImages[i].sprite = healthSprites[0];
-
-            if (healthAnimators[i] != null)
-                healthAnimators[i].SetTrigger("LoseHealth");
-        }
-    }*/
-
-    /*public void TakeDamage()
-    {
-        if (currentHealth > 0)
-        {
-            currentHealth--;
-            if (currentHealth < 0)
-                currentHealth = 0;
-
-            UpdateHealthUI();
-        }
-
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-    }
-
-    void Heal(int amount)
-    {
-        currentHealth += amount;
-        if (currentHealth > maxHealth)
-            currentHealth = maxHealth;
-
-        UpdateHealthUI();
-    }
-
-    void Die()
-    {
-        Debug.Log("Player is dead!");
-        Destroy(gameObject);
-        SceneManager.LoadScene(2);
-        Time.timeScale = 1;
-    }*/
-
     void RotateToDirection(Vector2 direction)
     {
         if (direction.sqrMagnitude < 0.01f) return;
@@ -232,19 +172,19 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("IsWalking", isMoving);
     }
 
-    /*private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("EnemyBullet"))
         {
-            TakeDamage();
+            //TakeDamage();
             Destroy(other.gameObject);
         }
 
         if (other.CompareTag("Wall"))
         {
-            TakeDamage();
+            //TakeDamage();
         }
-    }*/
+    }
 
     GameObject FindNearestEnemy()
     {
