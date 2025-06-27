@@ -104,6 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
+  maxHealth: 3
   rb: {fileID: 2740406095473022616}
   animator: {fileID: 7581415529448561153}
 --- !u!50 &2740406095473022616
