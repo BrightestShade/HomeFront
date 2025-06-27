@@ -48,7 +48,6 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
 
         currentAmmo = maxAmmo;
-        //currentHealth = maxHealth;
 
         ammoSprites = new Dictionary<int, Sprite>
         {
@@ -61,27 +60,12 @@ public class PlayerController : MonoBehaviour
             {0, emptyBulletSprite}
         };
 
-        /*healthSprites = new Dictionary<int, Sprite>
-        {
-            {4, fullHeartSprite},
-            {3, threeHeartSprite},
-            {2, twoHeartSprite},
-            {1, oneHeartSprite},
-            {0, emptyHeartSprite}
-        };
-
-        healthAnimators = new Animator[healthImages.Length];
-        for (int i = 0; i < healthImages.Length; i++)
-        {
-            healthAnimators[i] = healthImages[i].GetComponent<Animator>();
-        }*/
-
         UpdateAmmoUI();
 
         if (fireButton != null)
             fireButton.onClick.AddListener(OnFireButtonPressed);
 
-        //HealthPickUp.OnHealthPickUp += Heal;
+
     }
 
     void Update()

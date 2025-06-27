@@ -23,7 +23,7 @@ public class PlayerHealth : MonoBehaviour
 
     public float RemainingHealthPercentage
     {
-        get
+        get 
         {
             return currentHealth / maxHealth;
         }
