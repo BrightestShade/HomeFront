@@ -1,22 +1,19 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.Rendering;
 
 public class BZombieAttack : MonoBehaviour
 {
-    public PlayerHealth playerHealth;
-    public int damage = 2;
+    [SerializeField] private float damageAmount;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if(collision.gameObject.GetComponent<PlayerHealth>())
         {
-            Debug.Log("Hit player!");
-            playerHealth.TakeDamage(damage);
-        }
+            var PlayerHealth = collision.gameObject.GetComponent<PlayerHealth>();
 
-        if (collision.gameObject.CompareTag("PlayerHitBox"))
-        {
-            // Ignore collisions with player tagged objects (if needed)
-            return;
+            PlayerHealth.TakeDamage(damageAmount);
         }
     }
 }
