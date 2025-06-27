@@ -7,6 +7,8 @@ TagManager:
   - LZ
   - BZ
   - PlayerHitBox
+  - Enemy
+  - Shop
   layers:
   - Default
   - TransparentFX
