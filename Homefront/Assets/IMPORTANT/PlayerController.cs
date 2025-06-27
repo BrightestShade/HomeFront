@@ -50,6 +50,9 @@ public class PlayerController : MonoBehaviour
     private Dictionary<int, Sprite> ammoSprites;
     private Dictionary<int, Sprite> healthSprites;
 
+    public SpriteRenderer spriteRenderer;          // Assign in Inspector
+    public BoxCollider2D attackCollider;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -100,19 +103,15 @@ public class PlayerController : MonoBehaviour
         else
             movementInput = Vector2.zero;
 
-        GameObject nearestEnemy = FindNearestEnemy();
-        if (nearestEnemy != null)
+        Debug.Log("Joystick Input: " + movementInput);
+
+        if (movementInput.sqrMagnitude > 0.01f)
         {
-            Vector3 directionToEnemy = nearestEnemy.transform.position - transform.position;
-            if (directionToEnemy.x > 0 && !facingRight)
-                Flip();
-            else if (directionToEnemy.x < 0 && facingRight)
-                Flip();
+            RotateToDirection(movementInput);
         }
 
         UpdateAnimation();
     }
-
     void FixedUpdate()
     {
         rb.velocity = movementInput * moveSpeed;
@@ -146,8 +145,9 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            // Default direction if no enemy is found
-            Vector3 defaultTarget = bulletSpawnPoint.position + (facingRight ? Vector3.right : Vector3.left);
+            // Default direction: based on player's facing rotation
+            Vector3 direction = transform.right; // Player's local "forward" direction
+            Vector3 defaultTarget = bulletSpawnPoint.position + direction;
             bullet.GetComponent<Bullet>().SetTarget(defaultTarget);
         }
     }
@@ -218,20 +218,20 @@ public class PlayerController : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    void Flip()
+    void RotateToDirection(Vector2 direction)
     {
-        facingRight = !facingRight;
-        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        if (direction.sqrMagnitude < 0.01f) return;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        float offset = -90f;  // change this based on your sprite's facing direction
+
+        transform.rotation = Quaternion.Euler(0, 0, angle + offset);
     }
 
     void UpdateAnimation()
     {
-        bool isMoving = movementInput.sqrMagnitude > 0;
-        animator.SetBool("IsMoving", isMoving);
-        animator.SetBool("MovingUp", movementInput.y > 0);
-        animator.SetBool("MovingDown", movementInput.y < 0);
-        animator.SetBool("MovingRight", movementInput.x > 0);
-        animator.SetBool("MovingLeft", movementInput.x < 0);
+        bool isMoving = movementInput.sqrMagnitude > 0.01f; // if joystick is moving
+        animator.SetBool("IsWalking", isMoving);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
