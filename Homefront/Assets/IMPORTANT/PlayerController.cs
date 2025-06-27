@@ -226,12 +226,15 @@ public class PlayerController : MonoBehaviour
 
     void UpdateAnimation()
     {
-        bool isMoving = movementInput.sqrMagnitude > 0;
+        bool isMoving = movementInput.sqrMagnitude > 0.01f; // small threshold to prevent false positives
         animator.SetBool("IsMoving", isMoving);
         animator.SetBool("MovingUp", movementInput.y > 0);
         animator.SetBool("MovingDown", movementInput.y < 0);
         animator.SetBool("MovingRight", movementInput.x > 0);
         animator.SetBool("MovingLeft", movementInput.x < 0);
+
+        // Set the IsWalking parameter
+        animator.SetBool("IsWalking", isMoving);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
