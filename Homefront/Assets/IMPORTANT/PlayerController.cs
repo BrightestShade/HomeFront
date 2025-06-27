@@ -239,15 +239,15 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("EnemyBullet"))
+        if (other.CompareTag("Enemy"))
         {
-            TakeDamage();
-            Destroy(other.gameObject);
-        }
+            EnemyController enemy = other.GetComponent<EnemyController>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(); // You can optionally pass damage amount
+            }
 
-        if (other.CompareTag("Wall"))
-        {
-            TakeDamage();
+            Destroy(gameObject); // Bullet is always destroyed
         }
     }
 
