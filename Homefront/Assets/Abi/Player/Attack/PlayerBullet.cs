@@ -1,23 +1,16 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
+using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI; 
 
-public class PlayerController : MonoBehaviour
+public class PlayerBullet : MonoBehaviour
 {
-    [Header("Movement")]
-    public float moveSpeed = 5f;
-    public Joystick movementJoystick;
-    private Rigidbody2D rb;
-    private Vector2 movementInput;
-    private bool facingRight = true;
-
-    /*[Header("Shooting")]
+    [Header("Shooting")]
     public GameObject bulletPrefab;
     public Transform bulletSpawnPoint;
     public float fireRate = 0.5f;
+    public InputActionReference shootAction; // input 
     private float nextFireTime = 0f;
     public int maxAmmo = 6;
     public float reloadTime = 2f;
@@ -32,21 +25,15 @@ public class PlayerController : MonoBehaviour
     public Sprite spriteFor1Bullet;
     public Sprite spriteFor2Bullets;
     public Sprite spriteFor3Bullets;
-    public Sprite spriteFor4Bullets;*/
+    public Sprite spriteFor4Bullets;
 
-    private Animator animator;
-    private Animator[] healthAnimators;
-    //private Dictionary<int, Sprite> ammoSprites;
+    private Dictionary<int, Sprite> ammoSprites;
 
-    public SpriteRenderer spriteRenderer;          // Assign in Inspector
-    public BoxCollider2D attackCollider;
-
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
 
-        /*currentAmmo = maxAmmo;
+        currentAmmo = maxAmmo;
 
         ammoSprites = new Dictionary<int, Sprite>
         {
@@ -62,35 +49,40 @@ public class PlayerController : MonoBehaviour
         UpdateAmmoUI();
 
         if (fireButton != null)
-            fireButton.onClick.AddListener(OnFireButtonPressed);*/
+        {
+            fireButton.onClick.AddListener(OnFireButtonPressed);
+        }
+             
+        
     }
 
+    // Update is called once per frame
     void Update()
     {
-        if (movementJoystick != null)
-            movementInput = new Vector2(movementJoystick.Horizontal, movementJoystick.Vertical);
-        else
-            movementInput = Vector2.zero;
-
-        if (movementInput.sqrMagnitude > 0.01f)
-        {
-            RotateToDirection(movementInput);
-        }
-
-        UpdateAnimation();
+        
     }
-    void FixedUpdate()
+
+    private void OnEnable()
     {
-        rb.velocity = movementInput * moveSpeed;
+        shootAction.action.Enable();
     }
 
-    /*public void OnFireButtonPressed()
+    private void OnDisable()
+    {
+        shootAction.action.Disable();
+    }
+
+    public void OnFireButtonPressed()
     {
         if (!isReloading && Time.time >= nextFireTime)
         {
             if (currentAmmo > 0)
             {
-                Shoot();
+                if(shootAction.action.triggered)
+                {
+                    Shoot();
+                }
+
                 currentAmmo--;
                 UpdateAmmoUI();
                 nextFireTime = Time.time + fireRate;
@@ -99,16 +91,16 @@ public class PlayerController : MonoBehaviour
                     StartCoroutine(Reload());
             }
         }
-    }*/
+    }
 
-    /*void Shoot()
+    void Shoot()
     {
         GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
 
-        GameObject nearestEnemy = FindNearestEnemy();
-        if (nearestEnemy != null)
+        GameObject nearestEnemys = FindNearestEnemys();
+        if (nearestEnemys != null)
         {
-            bullet.GetComponent<Bullet>().SetTarget(nearestEnemy.transform.position);
+            bullet.GetComponent<Bullet>().SetTarget(nearestEnemys.transform.position);
         }
         else
         {
@@ -135,55 +127,31 @@ public class PlayerController : MonoBehaviour
         {
             ammoImage.sprite = ammoSprites[currentAmmo];
         }
-    }*/
-
-    void RotateToDirection(Vector2 direction)
-    {
-        if (direction.sqrMagnitude < 0.01f) return;
-
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        float offset = -90f;  // change this based on your sprite's facing direction
-
-        transform.rotation = Quaternion.Euler(0, 0, angle + offset);
     }
 
-    void UpdateAnimation()
+    GameObject FindNearestEnemys()
     {
-        bool isMoving = movementInput.sqrMagnitude > 0.01f; // if joystick is moving
-        animator.SetBool("IsWalking", isMoving);
-    }
-
-    /*private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("EnemyBullet"))
-        {
-            TakeDamage();
-            Destroy(other.gameObject);
-        }
-
-        if (other.CompareTag("Wall"))
-        {
-            TakeDamage();
-        }
-    }*/
-
-    /*GameObject FindNearestEnemy()
-    {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        GameObject nearestEnemy = null;
+        GameObject[] lzEnemies = GameObject.FindGameObjectsWithTag("LZ");
+        GameObject[] bzEnemies = GameObject.FindGameObjectsWithTag("BZ");
+        
+        List<GameObject> allEnemies = new List<GameObject>();
+        allEnemies.AddRange(lzEnemies);
+        allEnemies.AddRange(bzEnemies);
+        
+        GameObject nearestEnemys = null;
         float minDistance = Mathf.Infinity;
         Vector3 currentPosition = transform.position;
 
-        foreach (GameObject enemy in enemies)
+        foreach (GameObject enemy in allEnemies)
         {
             float distance = Vector3.Distance(currentPosition, enemy.transform.position);
             if (distance < minDistance)
             {
                 minDistance = distance;
-                nearestEnemy = enemy;
+                nearestEnemys = enemy;
             }
         }
 
-        return nearestEnemy;
-    }*/
+        return nearestEnemys;
+    }
 }

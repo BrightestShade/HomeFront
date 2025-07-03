@@ -17,6 +17,21 @@ public class Bullet : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "LZ")
+        {
+            Debug.Log("Bullet Hit Little Zombie!");
+            collision.gameObject.GetComponent<LittleZombieHealth>().TakeDamage(1);
+        }
+
+        if (collision.gameObject.tag == "BZ")
+        {
+            Debug.Log("Bullet Hit Big Zombie!");
+            collision.gameObject.GetComponent<BZHealth>().TakeDamage(1);
+        }
+    }
+
     void Start()
     {
         // Schedule self-destruction
@@ -28,15 +43,6 @@ public class Bullet : MonoBehaviour
         if (hasTarget)
         {
             transform.position += (Vector3)targetDirection * speed * Time.deltaTime;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            Destroy(other.gameObject);
-            Destroy(gameObject);
         }
     }
 }

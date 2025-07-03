@@ -7,6 +7,12 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private float currentHealth;
     [SerializeField] private float maxHealth;
+    [SerializeField] private Image fill;
+
+    private void Start()
+    {
+        currentHealth = maxHealth;
+    }
 
     public float RemainingHealthPercentage
     {
@@ -39,21 +45,32 @@ public class PlayerHealth : MonoBehaviour
         if(currentHealth == 0)
         {
             Destroy(gameObject);
+            Debug.Log("Player is Dead"); 
         }
+
+        UpdateHealthUI();
     }
 
-    public void AddHealth(float amountToAdd)
+    public void UpdateHealth(float amount)
     {
         if (currentHealth == maxHealth)
         {
             return;
         }
 
-        currentHealth += amountToAdd;
-
         if(currentHealth > maxHealth)
         {
             currentHealth = maxHealth; 
         }
+
+        currentHealth += amount;
+        UpdateHealthUI();
+    }
+
+    void UpdateHealthUI()
+    {
+        float targetFillAmount = currentHealth / maxHealth; 
+        fill.fillAmount = targetFillAmount;
+        Debug.Log("Update Health Bar"); 
     }
 }

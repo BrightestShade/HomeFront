@@ -206,4 +206,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0.02
   rb: {fileID: 2126938542976220136}
-  player: {fileID: 3661352550492057870}
+  player: {fileID: 0}

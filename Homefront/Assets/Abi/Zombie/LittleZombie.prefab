@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1670740523275502725}
   - component: {fileID: -5783438410343490327}
   - component: {fileID: 325699211102943172}
+  - component: {fileID: 9135498634887243253}
   m_Layer: 0
   m_Name: LittleZombie
   m_TagString: LZ
@@ -191,3 +192,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   currentHealth: 0
+--- !u!114 &9135498634887243253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2377884754985547263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 821fe236042cde8409d23ee5a38c1f5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0.02
+  rb: {fileID: 1670740523275502725}
+  player: {fileID: 0}

@@ -16,6 +16,18 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
+        if (player == null)
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+            {
+                player = playerObj.transform;
+            }
+            else
+            {
+                Debug.LogWarning("Player not found in the scene. Make sure the player GameObject has the 'Player' tag.");
+            }
+        }
     }
 
     void Update()
@@ -27,6 +39,7 @@ public class EnemyController : MonoBehaviour
 
     void FollowPlayer()
     {
+        if (player == null) return;
         transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
     }
 
