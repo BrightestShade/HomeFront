@@ -23,7 +23,7 @@ public class BZHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
-            Debug.Log("Little Zombie is Dead!");
+            Debug.Log("Big Zombie is Dead!");
         }
     }
 }
