@@ -1,18 +1,19 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 0.02f;
-
     [SerializeField] private Rigidbody2D rb;
-    // public Animator animator;
-
     [SerializeField] private Transform player;
-    private bool facingRight = true;
+    [SerializeField] private Animator animator;
 
-    // Damage over time variables
-    private float damageInterval = 1f; // One hit per second
-    private float lastDamageTime = 0f;
+    private PlayerHealth playerHealth;
+
+    private bool playerInRange = false;
+    private GameObject playerObj;
+
+    private Coroutine attackCoroutine;
 
     void Start()
     {
@@ -32,9 +33,12 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
+        if (!playerInRange)
+        {
             FollowPlayer();
-            //UpdateAnimation();
-            FacePlayer();
+        }
+
+        RotateTowardsPlayer();
     }
 
     void FollowPlayer()
@@ -43,60 +47,67 @@ public class EnemyController : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
     }
 
-    /*void UpdateAnimation()
+    void RotateTowardsPlayer()
     {
         if (player == null) return;
 
-        Vector2 direction = (player.position - transform.position).normalized;
-
-        animator.SetFloat("Horizontal", direction.x);
-        animator.SetFloat("Vertical", direction.y);
-        animator.SetFloat("Speed", direction.sqrMagnitude);
-    }*/
-
-    void FacePlayer()
-    {
-        if (player == null) return;
-
-        if (player.position.x > transform.position.x && !facingRight)
-        {
-            Flip();
-        }
-        else if (player.position.x < transform.position.x && facingRight)
-        {
-            Flip();
-        }
+        Vector3 direction = player.position - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
     }
 
-    void Flip()
+    private IEnumerator RepeatedAttack()
     {
-        facingRight = !facingRight;
-        Vector3 localScale = transform.localScale;
-        localScale.x *= -1;
-        transform.localScale = localScale;
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
+        while (playerInRange)
         {
-            if (Time.time - lastDamageTime >= damageInterval)
+            animator.SetBool("IsAttacking", true);
+
+            if (playerHealth != null)
             {
-                PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
-                if (playerHealth != null)
-                {
-                    //playerController.TakeDamage();
-                    lastDamageTime = Time.time;
-                }
+                playerHealth.TakeDamage(10f); // Adjust damage amount as needed
+                Debug.Log("Enemy attacked the player!");
+            }
+            else
+            {
+                Debug.LogWarning("PlayerHealth not found on the player object.");
+            }
+
+            yield return new WaitForSeconds(0.2f); // Animation duration
+            animator.SetBool("IsAttacking", false);
+
+            yield return new WaitForSeconds(0.3f); // Remaining cooldown time (0.5s total)
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            playerInRange = true;
+            playerObj = collision.gameObject;
+            playerHealth = playerObj.GetComponent<PlayerHealth>();
+
+            if (attackCoroutine == null)
+            {
+                attackCoroutine = StartCoroutine(RepeatedAttack());
             }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        if (other.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            lastDamageTime = 0f;
+            playerInRange = false;
+            playerObj = null;
+            playerHealth = null;
+            animator.SetBool("IsAttacking", false);
+
+            if (attackCoroutine != null)
+            {
+                StopCoroutine(attackCoroutine);
+                attackCoroutine = null;
+            }
         }
     }
 }
