@@ -4,6 +4,7 @@ public class PlayerAttack : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.gameObject.tag == "LZ")
         {
             Debug.Log("Hit Little Zombie!");
@@ -15,5 +16,9 @@ public class PlayerAttack : MonoBehaviour
             Debug.Log("Hit Big Zombie!");
             collision.gameObject.GetComponent<BZHealth>().TakeDamage(1);
         }
+
+
     }
+    
+    
 }
