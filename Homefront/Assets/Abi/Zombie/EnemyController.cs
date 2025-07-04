@@ -9,20 +9,21 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Animator animator;
 
     private PlayerHealth playerHealth;
-
-    private bool playerInRange = false;
     private GameObject playerObj;
+    private bool playerInRange = false;
 
-    private Coroutine attackCoroutine;
+    private bool isOnCooldown = false;
+    [SerializeField] private float attackCooldown = 0.5f;
+    private float lastAttackTime = -999f;
 
     void Start()
     {
         if (player == null)
         {
-            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-            if (playerObj != null)
+            GameObject foundPlayerObj = GameObject.FindGameObjectWithTag("Player");
+            if (foundPlayerObj != null)
             {
-                player = playerObj.transform;
+                player = foundPlayerObj.transform;
             }
             else
             {
@@ -39,6 +40,11 @@ public class EnemyController : MonoBehaviour
         }
 
         RotateTowardsPlayer();
+
+        if (playerInRange && Time.time >= lastAttackTime + attackCooldown)
+        {
+            AttackPlayer();
+        }
     }
 
     void FollowPlayer()
@@ -56,26 +62,14 @@ public class EnemyController : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
     }
 
-    private IEnumerator RepeatedAttack()
+    private void AttackPlayer()
     {
-        while (playerInRange)
+        if (playerHealth != null)
         {
-            animator.SetBool("IsAttacking", true);
-
-            if (playerHealth != null)
-            {
-                playerHealth.TakeDamage(1f); // Adjust damage amount as needed
-                Debug.Log("Enemy attacked the player!");
-            }
-            else
-            {
-                Debug.LogWarning("PlayerHealth not found on the player object.");
-            }
-
-            yield return new WaitForSeconds(0.2f); // Animation duration
-            animator.SetBool("IsAttacking", false);
-
-            yield return new WaitForSeconds(0.5f); // Remaining cooldown time (0.5s total)
+            animator.SetTrigger("Attack");
+            playerHealth.TakeDamage(1f);
+            Debug.Log("Enemy attacked the player!");
+            lastAttackTime = Time.time;
         }
     }
 
@@ -86,11 +80,6 @@ public class EnemyController : MonoBehaviour
             playerInRange = true;
             playerObj = collision.gameObject;
             playerHealth = playerObj.GetComponent<PlayerHealth>();
-
-            if (attackCoroutine == null)
-            {
-                attackCoroutine = StartCoroutine(RepeatedAttack());
-            }
         }
     }
 
@@ -101,13 +90,6 @@ public class EnemyController : MonoBehaviour
             playerInRange = false;
             playerObj = null;
             playerHealth = null;
-            animator.SetBool("IsAttacking", false);
-
-            if (attackCoroutine != null)
-            {
-                StopCoroutine(attackCoroutine);
-                attackCoroutine = null;
-            }
         }
     }
 }

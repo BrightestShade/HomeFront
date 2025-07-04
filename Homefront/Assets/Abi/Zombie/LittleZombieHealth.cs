@@ -37,7 +37,7 @@ public class LittleZombieHealth : MonoBehaviour
 
     void Die()
     {
-        cm.currencyCount+= 10;
+        cm.currencyCount+=10;
         Debug.Log("Zombie died! Currency count increased.");
         Destroy(gameObject);
     }

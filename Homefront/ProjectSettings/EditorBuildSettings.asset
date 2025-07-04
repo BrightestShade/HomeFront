@@ -6,8 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Yasmins Scene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/Scenes/Main Menu.unity
+    guid: 62666eacee36e6746a6963745d93cbe8
+  - enabled: 1
+    path: Assets/Scenes/HomeFront1.unity
+    guid: 1a0e4f876386d2c4fa4c5fa17a9bef95
+  - enabled: 1
+    path: Assets/Scenes/Death Menu.unity
+    guid: 3cc77a9e6bf8f2e4abb177f8a68f30c1
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 3e3e79d36674e31448b4d3a1ec79aa6e, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
