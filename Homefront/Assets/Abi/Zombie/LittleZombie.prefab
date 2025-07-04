@@ -192,6 +192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   currentHealth: 0
+  currencyPrefab: {fileID: 2698318852329494060, guid: 4704df2640b912b4cad46a45cac91a45, type: 3}
 --- !u!114 &9135498634887243253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,3 +208,4 @@ MonoBehaviour:
   moveSpeed: 0.02
   rb: {fileID: 1670740523275502725}
   player: {fileID: 0}
+  animator: {fileID: 0}

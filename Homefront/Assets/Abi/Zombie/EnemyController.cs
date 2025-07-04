@@ -64,7 +64,7 @@ public class EnemyController : MonoBehaviour
 
             if (playerHealth != null)
             {
-                playerHealth.TakeDamage(10f); // Adjust damage amount as needed
+                playerHealth.TakeDamage(1f); // Adjust damage amount as needed
                 Debug.Log("Enemy attacked the player!");
             }
             else
@@ -75,7 +75,7 @@ public class EnemyController : MonoBehaviour
             yield return new WaitForSeconds(0.2f); // Animation duration
             animator.SetBool("IsAttacking", false);
 
-            yield return new WaitForSeconds(0.3f); // Remaining cooldown time (0.5s total)
+            yield return new WaitForSeconds(0.5f); // Remaining cooldown time (0.5s total)
         }
     }
 

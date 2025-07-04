@@ -4,12 +4,19 @@ using UnityEngine;
 public class LittleZombieHealth : MonoBehaviour
 {
     public int maxHealth = 3;
-    public int currentHealth; 
+    public int currentHealth;
+
+    public CurrencyManager cm;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currentHealth = maxHealth; 
+        currentHealth = maxHealth;
+
+        if (cm == null)
+        {
+            cm = FindObjectOfType<CurrencyManager>();
+        }
     }
 
     // Update is called once per frame
@@ -23,8 +30,15 @@ public class LittleZombieHealth : MonoBehaviour
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            Die();
             Debug.Log("Little Zombie is Dead!");
         }
+    }
+
+    void Die()
+    {
+        cm.currencyCount++;
+        Debug.Log("Zombie died! Currency count increased.");
+        Destroy(gameObject);
     }
 }

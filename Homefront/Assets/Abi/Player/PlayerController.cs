@@ -15,10 +15,14 @@ public class PlayerController : MonoBehaviour
     private bool facingRight = true;
 
     private Animator animator;
-    private Animator[] healthAnimators;
+    //private Animator[] healthAnimators;
+    //private Dictionary<int, Sprite> ammoSprites;
+    //private Dictionary<int, Sprite> healthSprites;
 
     public SpriteRenderer spriteRenderer;          // Assign in Inspector
     public BoxCollider2D attackCollider;
+
+    public CurrencyManager cm;
 
     void Start()
     {
@@ -45,8 +49,6 @@ public class PlayerController : MonoBehaviour
         rb.velocity = movementInput * moveSpeed;
     }
 
-    
-
     void RotateToDirection(Vector2 direction)
     {
         if (direction.sqrMagnitude < 0.01f) return;
@@ -63,5 +65,10 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("IsWalking", isMoving);
     }
 
-    
+    /*public void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.CompareTag("BZ"))
+        cm.currencyCount++;
+        Debug.Log("Currency count +");
+    }*/
 }
