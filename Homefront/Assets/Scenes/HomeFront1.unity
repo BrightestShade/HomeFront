@@ -11912,7 +11912,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1416984505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12681,7 +12681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a719fb0875c68434c9f156fc9f5e4afe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LZPrefab: {fileID: 2377884754985547263, guid: f01ab0a3f5388aa45a6a802f262b27f5, type: 3}
+  LZPrefab: {fileID: 2908020113735199392, guid: bd8387475767fb54ea162370f5da9ee5, type: 3}
   spawnInterval: 20
   minX: -10
   maxX: 10
