@@ -1,7 +1,8 @@
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events; 
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -45,7 +46,10 @@ public class PlayerHealth : MonoBehaviour
         if(currentHealth == 0)
         {
             Destroy(gameObject);
-            Debug.Log("Player is Dead"); 
+            Debug.Log("Player is Dead");
+
+            SceneManager.LoadScene(2);
+            Debug.Log("Death Menu");
         }
 
         UpdateHealthUI();
