@@ -10,6 +10,11 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Image fill;
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    private PlayerController playerController;
+
+>>>>>>> Stashed changes
 =======
     private PlayerController playerController;
 
@@ -18,6 +23,7 @@ public class PlayerHealth : MonoBehaviour
     private bool IsTakingDmg;
     private Animator animator;
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     private void Start()
     {
@@ -31,6 +37,12 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
+=======
+
+    private void Start()
+    {
+        currentHealth = maxHealth;
+>>>>>>> Stashed changes
 
         animator = GetComponent<Animator>();
 
@@ -44,6 +56,9 @@ public class PlayerHealth : MonoBehaviour
             return currentHealth / maxHealth;
         }
     }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
     public void TakeDamage(float damageAmount)
@@ -54,6 +69,8 @@ public class PlayerHealth : MonoBehaviour
             return;
         }
 
+<<<<<<< Updated upstream
+=======
         if (currentHealth <= 0)
         {
             currentHealth = 0;
@@ -98,6 +115,51 @@ public class PlayerHealth : MonoBehaviour
 
     /*void TakeDamage(float damageAmount)
     {
+>>>>>>> Stashed changes
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+        }
+
+        currentHealth -= damageAmount;
+
+        if (currentHealth < 0)
+        {
+            currentHealth = 0;
+        }
+
+        if (currentHealth > 0)
+        {
+            OnDied.Invoke();
+        }
+
+        if (currentHealth <= 0)
+            return;
+
+        currentHealth -= damageAmount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        if (animator != null)
+        {
+            StartCoroutine(PlayDamageAnimation());
+        }
+
+        if (currentHealth <= 0)
+        {
+            Debug.Log("Player is Dead");
+            Destroy(gameObject);
+            SceneManager.LoadScene(2); // Death scene
+        }
+        else
+        {
+            OnDied.Invoke();
+        }
+
+        UpdateHealthUI();
+    }*/
+
+    /*void TakeDamage(float damageAmount)
+    {
         if (currentHealth <= 0)
             return;
 
@@ -127,10 +189,13 @@ public class PlayerHealth : MonoBehaviour
     {
         if (currentHealth >= maxHealth) return;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
         currentHealth += amount;
         currentHealth = Mathf.Min(currentHealth, maxHealth);
 =======
+=======
+>>>>>>> Stashed changes
 
         currentHealth += amount;
         currentHealth = Mathf.Min(currentHealth, maxHealth);
@@ -154,6 +219,9 @@ public class PlayerHealth : MonoBehaviour
             currentHealth = maxHealth;
         }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         UpdateHealthUI();
     }
@@ -163,6 +231,13 @@ public class PlayerHealth : MonoBehaviour
         float targetFillAmount = currentHealth / maxHealth;
         fill.fillAmount = targetFillAmount;
         Debug.Log("Update Health Bar");
+    }
+
+    private System.Collections.IEnumerator PlayDamageAnimation()
+    {
+        animator.SetBool("IsTakingDmg", true);
+        yield return new WaitForSeconds(0.3f); // adjust to match animation length
+        animator.SetBool("IsTakingDmg", false);
     }
 
     private System.Collections.IEnumerator PlayDamageAnimation()
