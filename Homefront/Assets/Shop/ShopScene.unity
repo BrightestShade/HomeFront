@@ -825,6 +825,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopCanva
       objectReference: {fileID: 0}
+    - target: {fileID: 2010281732820743515, guid: e6e11c16355565a429f9fdf4b2833d9e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3905444548381300495, guid: e6e11c16355565a429f9fdf4b2833d9e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
