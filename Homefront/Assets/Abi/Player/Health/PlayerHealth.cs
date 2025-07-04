@@ -1,7 +1,7 @@
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
-using UnityEngine.SceneManagement;
+using UnityEngine.Events; 
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -9,40 +9,43 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float maxHealth;
     [SerializeField] private Image fill;
 
-    public UnityEvent OnDied;
-    private bool IsTakingDmg;
-    private Animator animator;
-
     private void Start()
     {
         currentHealth = maxHealth;
-        animator = GetComponent<Animator>();
     }
 
-    public float RemainingHealthPercentage => currentHealth / maxHealth;
+    public float RemainingHealthPercentage
+    {
+        get
+        {
+            return currentHealth / maxHealth;
+        }
+    }
+    public UnityEvent OnDied; 
 
     public void TakeDamage(float damageAmount)
     {
         if (currentHealth <= 0)
-            return;
+        {
+            currentHealth = 0;
+        }
 
         currentHealth -= damageAmount;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
-        if (animator != null)
+        if (currentHealth < 0)
         {
-            StartCoroutine(PlayDamageAnimation());
+            currentHealth = 0;
         }
 
-        if (currentHealth <= 0)
-        {
-            Debug.Log("Player is Dead");
-            Destroy(gameObject);
-            SceneManager.LoadScene(2); // Death scene
-        }
-        else
+        if(currentHealth > 0)
         {
             OnDied.Invoke();
+        }
+        
+        if(currentHealth == 0)
+        {
+            Destroy(gameObject);
+            Debug.Log("Player is Dead"); 
         }
 
         UpdateHealthUI();
@@ -50,24 +53,24 @@ public class PlayerHealth : MonoBehaviour
 
     public void UpdateHealth(float amount)
     {
-        if (currentHealth >= maxHealth) return;
+        if (currentHealth == maxHealth)
+        {
+            return;
+        }
+
+        if(currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth; 
+        }
 
         currentHealth += amount;
-        currentHealth = Mathf.Min(currentHealth, maxHealth);
         UpdateHealthUI();
     }
 
     void UpdateHealthUI()
     {
-        float targetFillAmount = currentHealth / maxHealth;
+        float targetFillAmount = currentHealth / maxHealth; 
         fill.fillAmount = targetFillAmount;
-        Debug.Log("Update Health Bar");
-    }
-
-    private System.Collections.IEnumerator PlayDamageAnimation()
-    {
-        animator.SetBool("IsTakingDmg", true);
-        yield return new WaitForSeconds(0.3f); // adjust to match animation length
-        animator.SetBool("IsTakingDmg", false);
+        Debug.Log("Update Health Bar"); 
     }
 }

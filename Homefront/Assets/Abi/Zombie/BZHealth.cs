@@ -36,7 +36,7 @@ public class BZHealth : MonoBehaviour
 
     void Die()
     {
-        cm.currencyCount+=10;
+        cm.currencyCount++;
         Debug.Log("Zombie died! Currency count increased.");
         Destroy(gameObject);
     }

@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
     public GameObject shopCanvas;
     private bool isShopOpen = false;
 
+    [Header("Shop Items")]
+    public int itemCost = 10;  // Cost of the item in shop currency
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -109,6 +112,28 @@ public class PlayerController : MonoBehaviour
             shopCanvas.SetActive(false);
             Time.timeScale = 1f;
             isShopOpen = false;
+        }
+    }
+
+    // Call this method via UI Button OnClick event in your shop canvas
+    public void TryBuyItem()
+    {
+        if (cm == null)
+        {
+            Debug.LogWarning("CurrencyManager is not assigned!");
+            return;
+        }
+
+        if (cm.currencyCount >= itemCost)
+        {
+            cm.currencyCount -= itemCost;
+            Debug.Log("Item purchased!");
+
+            // TODO: Add logic here to grant the purchased item to the player
+        }
+        else
+        {
+            Debug.Log("Not enough money to buy this item.");
         }
     }
 }
