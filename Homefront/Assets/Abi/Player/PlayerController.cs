@@ -19,9 +19,15 @@ public class PlayerController : MonoBehaviour
     public BoxCollider2D attackCollider;
     public CurrencyManager cm;
 
+    [Header("Shop")]
+    public bool IsShopOpen => isShopOpen;
+
     [Header("Shop UI")]
     public GameObject shopCanvas;
     private bool isShopOpen = false;
+
+    [Header("Shop Items")]
+    public int itemCost = 50;
 
     void Start()
     {
@@ -29,7 +35,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
 
         if (shopCanvas != null)
-            shopCanvas.SetActive(false); // Ensure it's off at start
+            shopCanvas.SetActive(false); 
     }
 
     void Update()
@@ -74,7 +80,7 @@ public class PlayerController : MonoBehaviour
         if (direction.sqrMagnitude < 0.01f) return;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        float offset = -90f;  // Adjust if needed based on sprite orientation
+        float offset = -90f;  
         transform.rotation = Quaternion.Euler(0, 0, angle + offset);
     }
 
@@ -109,6 +115,25 @@ public class PlayerController : MonoBehaviour
             shopCanvas.SetActive(false);
             Time.timeScale = 1f;
             isShopOpen = false;
+        }
+    }
+
+    public void TryBuyItem()
+    {
+        if (cm == null)
+        {
+            Debug.LogWarning("CurrencyManager is not assigned!");
+            return;
+        }
+
+        if (cm.currencyCount >= itemCost)
+        {
+            cm.currencyCount -= itemCost;
+            Debug.Log("Item purchased!");
+        }
+        else
+        {
+            Debug.Log("Not enough currency.");
         }
     }
 }

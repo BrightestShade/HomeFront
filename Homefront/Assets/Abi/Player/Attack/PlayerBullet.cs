@@ -10,7 +10,7 @@ public class PlayerBullet : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform bulletSpawnPoint;
     public float fireRate = 0.5f;
-    public InputActionReference shootAction; // input 
+    //public InputActionReference shootAction; // input 
     private float nextFireTime = 0f;
     public int maxAmmo = 6;
     public float reloadTime = 2f;
@@ -27,11 +27,20 @@ public class PlayerBullet : MonoBehaviour
     public Sprite spriteFor3Bullets;
     public Sprite spriteFor4Bullets;
 
+    [Header("Shop")]
+    private PlayerController playerController;
+    private CurrencyManager cm; 
+    public bool pistolUnlocked = false;
+    public GameObject pistolObject;
+    public int itemCost = 150;
+
     private Dictionary<int, Sprite> ammoSprites;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+        playerController = GetComponent<PlayerController>();
 
         currentAmmo = maxAmmo;
 
@@ -62,17 +71,52 @@ public class PlayerBullet : MonoBehaviour
         
     }
 
-    private void OnEnable()
+    /*private void OnEnable()
     {
-        shootAction.action.Enable();
+        if (pistolUnlocked)
+        {
+            shootAction.action.Enable();
+        }
     }
 
     private void OnDisable()
     {
         shootAction.action.Disable();
+    }*/
+
+    public void TryBuyItem()
+    {
+        if (cm == null)
+        {
+            Debug.LogWarning("CurrencyManager is not assigned!");
+            return;
+        }
+
+        if (pistolUnlocked)
+        {
+            Debug.Log("You already purchased the pistol.");
+            return;
+        }
+
+        if (cm.currencyCount >= itemCost)
+        {
+            cm.currencyCount -= itemCost;
+            pistolUnlocked = true;
+
+            if (pistolObject != null)
+                pistolObject.SetActive(true);
+
+            //shootAction.action.Enable();
+
+            Debug.Log("Pistol purchased and unlocked!");
+        }
+        else
+        {
+            Debug.Log("Not enough currency.");
+        }
     }
 
-    public void OnFireButtonPressed()
+    /*public void OnFireButtonPressed()
     {
         if (!isReloading && Time.time >= nextFireTime)
         {
@@ -82,6 +126,35 @@ public class PlayerBullet : MonoBehaviour
                 {
                     Shoot();
                 }
+
+                currentAmmo--;
+                UpdateAmmoUI();
+                nextFireTime = Time.time + fireRate;
+
+                if (currentAmmo <= 0)
+                    StartCoroutine(Reload());
+            }
+        }
+    }*/
+
+    public void OnFireButtonPressed()
+    {
+        if (playerController != null && playerController.IsShopOpen)
+        {
+            Debug.Log("Cannot shoot while shop is open.");
+            return;
+        }
+
+        if (!isReloading && Time.time >= nextFireTime)
+        {
+            if (currentAmmo > 0)
+            {
+                /*if (shootAction.action.triggered)
+                {
+                    Shoot();
+                }*/
+
+                Shoot();
 
                 currentAmmo--;
                 UpdateAmmoUI();
